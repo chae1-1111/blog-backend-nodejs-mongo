@@ -8,11 +8,11 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 
-// 회원 관련 라우터
+// 회원 라우터
 const memberRouter = require("./router/member");
 app.use("/member", memberRouter);
 
-// 포스트 관련 라우터
+// 포스트 라우터
 const boardRouter = require("./router/board");
 app.use("/board", boardRouter);
 
