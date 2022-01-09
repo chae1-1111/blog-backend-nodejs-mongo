@@ -18,9 +18,10 @@ router.route("/login").post((req, res) => {
             jsonData.resultMsg = "error";
             res.status(resultJson.result).json(resultJson);
         } else {
-            if (result == 1) {
+            if (result != 0) {
                 jsonData.result = 200;
                 jsonData.resultMsg = "로그인 성공";
+                jsonData.userkey = result;
             } else {
                 jsonData.result = 201;
                 jsonData.resultMsg = "로그인 실패";

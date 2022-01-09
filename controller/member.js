@@ -40,7 +40,7 @@ memberCont.loginMember = function (userid, userpw, callback) {
         } else {
             console.log("DB 연결 성공!");
             const sql = conn.query(
-                "select salt, userpw from member where userid = ?;",
+                "select userkey, salt, userpw from member where userid = ?;",
                 userid,
                 (err, result) => {
                     conn.release();
@@ -53,7 +53,7 @@ memberCont.loginMember = function (userid, userpw, callback) {
                             result[0].salt
                         );
                         if (encryptPw == result[0].userpw) {
-                            callback(null, 1);
+                            callback(null, result[0].userkey);
                             return;
                         } else {
                             callback(null, 0);
