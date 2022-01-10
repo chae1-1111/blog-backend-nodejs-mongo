@@ -140,7 +140,7 @@ memberCont.modify = (userid, userpw, email, callback) => {
     });
 };
 
-memberCont.findId = (name, email) => {
+memberCont.findId = (name, email, callback) => {
     pool.getConnection((err, conn) => {
         if (err) {
             console.log(err);
