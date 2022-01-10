@@ -109,4 +109,25 @@ router.route("/idCheck").post((req, res) => {
     });
 });
 
+router.route("/findId").post((req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+
+    const jsonData = {};
+    memberCont.findId(name, email, (err, result) => {
+        if (err) {
+            jsonData.result = 400;
+            jsonData.resultMsg = err;
+        } else {
+            if (result != null) {
+                jsonData.result = 200;
+                jsonData.resultMsg = "아이디 찾기 성공";
+                jsonData.userid = result.substr(0, -3) + "***";
+                console.log(jsonData.userid);
+            }
+        }
+        res.status(jsonData.result).json(jsonData);
+    });
+});
+
 module.exports = router;

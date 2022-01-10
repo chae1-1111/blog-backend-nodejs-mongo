@@ -140,6 +140,36 @@ memberCont.modify = (userid, userpw, email, callback) => {
     });
 };
 
+memberCont.findId = (name, email) => {
+    pool.getConnection((err, conn) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("DB 연결 성공!");
+            const sql = conn.query(
+                "select userid from member where name = ? and email = ?",
+                [name, email],
+                (err, result) => {
+                    conn.release();
+                    if (err) {
+                        callback(err, null);
+                        return;
+                    } else {
+                        if (result.length == 0) {
+                            console.log("일치하는 사용자 없음");
+                            callback(null, null);
+                        } else {
+                            console.log("아이디 조회 성공");
+                            callback(null, result[0].userid);
+                        }
+                    }
+                }
+            );
+        }
+    });
+};
+
 memberCont.encrypt = function (userpw, salt) {
     const hashPassword = crypto
         .createHash("sha512")
