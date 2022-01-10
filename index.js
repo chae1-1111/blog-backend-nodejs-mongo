@@ -29,6 +29,8 @@ testRouter.use(cors());
 
 app.use("/test", testRouter);
 
+app.disable("x-powered-by");
+
 app.listen(port, () => {
     console.log(`${port}포트 서버 실행중...`);
 });
