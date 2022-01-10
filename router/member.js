@@ -123,7 +123,8 @@ router.route("/findId").post((req, res) => {
                 jsonData.result = 200;
                 jsonData.resultMsg = "아이디 찾기 성공";
                 jsonData.userid = result.substr(0, -3) + "***";
-                console.log(jsonData.userid);
+                console.log(result);
+                console.log(result.substr(0, result.length - 3));
             } else {
                 jsonData.result = 201;
                 jsonData.resultMsg = "일치하는 사용자 없음";
