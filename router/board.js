@@ -86,6 +86,7 @@ router.route("/length").get((req, res) => {
         } else {
             resultJson.result = 200;
             resultJson.resultMsg = "게시글 조회 성공";
+            console.log(result);
             resultJson.length = result;
         }
         res.status(resultJson.result).json(resultJson);
