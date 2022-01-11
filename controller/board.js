@@ -66,7 +66,7 @@ boardCont.getList = function (userkey, page, sortType, callback) {
     });
 };
 
-boardCont.getLength = () => {
+boardCont.getLength = (userkey, callback) => {
     pool.getConnection((err, conn) => {
         if (err) {
             console.log(err);
