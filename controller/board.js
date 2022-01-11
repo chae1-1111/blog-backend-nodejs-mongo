@@ -131,7 +131,6 @@ boardCont.modify = function (userkey, postkey, title, description, callback) {
                         callback(err, null);
                         return;
                     } else {
-                        console.log(result);
                         if (result.changedRows == 0) {
                             callback(null, null);
                         } else {
