@@ -66,6 +66,28 @@ boardCont.getList = function (userkey, page, sortType, callback) {
     });
 };
 
+boardCont.getLength = () => {
+    pool.getConnection((err, conn) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("DB 연결 성공!");
+            var queryString =
+                "select count(postkey) count from board where userkey = ?";
+            const sql = conn.query(queryString, [userkey], (err, result) => {
+                conn.release();
+                if (err) {
+                    callback(err, null);
+                    return;
+                } else {
+                    callback(null, result.count);
+                }
+            });
+        }
+    });
+};
+
 // 상세 정보 반환
 boardCont.getDetail = function (postkey, callback) {
     pool.getConnection((err, conn) => {

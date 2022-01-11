@@ -69,6 +69,29 @@ router.route("/list").post((req, res) => {
     });
 });
 
+router.route("/length").get((req, res) => {
+    const userkey = req.query.userkey;
+
+    const resultJson = {
+        result: null,
+        resultMsg: "",
+        length: 0,
+    };
+
+    boardCont.getLength(userkey, (err, result) => {
+        if (err) {
+            console.log(err);
+            resultJson.result = 400;
+            resultJson.resultMsg = err;
+        } else {
+            resultJson.result = 200;
+            resultJson.resultMsg = "게시글 조회 성공";
+            resultJson.length = result;
+        }
+        res.status(resultJson.result).json(resultJson);
+    });
+});
+
 // 상세 페이지
 router.route("/detail").get((req, res) => {
     const postkey = req.query.postkey;
