@@ -22,9 +22,6 @@ boardCont.post = function (userkey, name, title, description, callback) {
                         callback(err, null);
                         return;
                     } else {
-                        console.log("포스팅 성공");
-                        console.log("이름 : " + name);
-                        console.log("제목 : " + title);
                         callback(null, true);
                     }
                 }
