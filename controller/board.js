@@ -81,7 +81,7 @@ boardCont.getLength = (userkey, callback) => {
                     callback(err, null);
                     return;
                 } else {
-                    callback(null, result.count);
+                    callback(null, result[0].count);
                 }
             });
         }
