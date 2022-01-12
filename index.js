@@ -31,6 +31,10 @@ app.use("/test", testRouter);
 
 app.disable("x-powered-by");
 
+app.all("*", (req) => {
+    console.log(req.socket.remoteAddress);
+});
+
 app.listen(port, () => {
     console.log(`${port}포트 서버 실행중...`);
 });
